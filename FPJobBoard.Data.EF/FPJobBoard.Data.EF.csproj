@@ -56,7 +56,7 @@
     <Compile Include="ApplicationStatu.cs">
       <DependentUpon>FPJobBoardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FPJobBoardMetadata.cs" />
+    <Compile Include="Metadata\FPJobBoardMetadata.cs" />
     <Compile Include="FPJobBoardModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
