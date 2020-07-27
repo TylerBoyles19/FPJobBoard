@@ -1,7 +1,5 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(FPJobBoard.UI.EF.Startup))]
 namespace FPJobBoard.UI.EF
 {
     public partial class Startup
