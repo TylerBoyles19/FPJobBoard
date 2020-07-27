@@ -50,6 +50,7 @@ C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJob
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\Antlr3.Runtime.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\EntityFramework.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\EntityFramework.SqlServer.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\FPJobBoard.Data.EF.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -74,6 +75,8 @@ C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJob
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\System.Web.WebPages.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\System.Web.WebPages.Razor.dll
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\WebGrease.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\FPJobBoard.Data.EF.pdb
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\FPJobBoard.Data.EF.dll.config
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\System.Web.Helpers.xml
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\System.Web.Mvc.xml
 C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.UI.EF\bin\System.Web.Optimization.xml

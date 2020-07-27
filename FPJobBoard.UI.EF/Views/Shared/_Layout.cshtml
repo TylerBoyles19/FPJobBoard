@@ -41,11 +41,13 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li><a class="active" href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        @*<li><a href="@Url.Action("Index", "")"</li>*@
+                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
+                        <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                        <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+                        <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
+                        <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Status</a></li>
+                        <li><a href="@Url.Action("Index", "UserDetails")">Profile</a></li>
                         <li>@Html.Partial("_LoginPartial")</li>
                     </ul>
                 </div>

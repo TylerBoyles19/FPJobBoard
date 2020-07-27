@@ -1,0 +1,12 @@
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\FPJobBoard.Data.EF.dll.config
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\FPJobBoard.Data.EF.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\FPJobBoard.Data.EF.pdb
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\EntityFramework.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\EntityFramework.xml
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\obj\Debug\FPJobBoard.Data.EF.csprojAssemblyReference.cache
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\obj\Debug\FPJobBoard.Data.EF.csproj.CoreCompileInputs.cache
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\obj\Debug\FPJobBoard.Data.EF.csproj.CopyComplete
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\obj\Debug\FPJobBoard.Data.EF.dll
+C:\Users\student\OneDrive\Documents\Visual Studio 2017\Projects\12_PROJECT\FPJobBoard\src\FPJobBoard.Data.EF\obj\Debug\FPJobBoard.Data.EF.pdb
