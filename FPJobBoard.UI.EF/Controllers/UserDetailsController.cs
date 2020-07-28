@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FPJobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
@@ -17,7 +18,10 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: UserDetails
         public ActionResult Index()
         {
-            return View(db.UserDetails.ToList());
+            string currentUserID = User.Identity.GetUserId();
+
+            var user = db.UserDetails.Where(u => u.UserID == currentUserID).ToList();
+            return View(user);
         }
 
         // GET: UserDetails/Details/5
@@ -47,10 +51,32 @@ namespace FPJobBoard.UI.EF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,FirstName,LastName,ResumeFilename")] UserDetail userDetail)
+        public ActionResult Create([Bind(Include = "UserID,FirstName,LastName,ResumeFilename")] UserDetail userDetail, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string imageName = "NoImageAvalible.png";
+                if (resume != null)
+                {
+                    imageName = resume.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".pdf" };
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+                        resume.SaveAs(Server.MapPath("~/Content/UploadedImg/" + imageName));
+                    }
+                    else
+                    {
+                        imageName = "NoImageAvalible.png";
+                    }
+                }
+                userDetail.ResumeFilename = imageName;
+                #endregion
+
                 db.UserDetails.Add(userDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,10 +105,32 @@ namespace FPJobBoard.UI.EF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,FirstName,LastName,ResumeFilename")] UserDetail userDetail)
+        public ActionResult Edit([Bind(Include = "UserID,FirstName,LastName,ResumeFilename")] UserDetail userDetail, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string imageName = "NoImageAvalible.png";
+                if (resume != null)
+                {
+                    imageName = resume.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".pdf" };
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+                        resume.SaveAs(Server.MapPath("~/Content/UploadedImg/" + imageName));
+                    }
+                    else
+                    {
+                        imageName = "NoImageAvalible.png";
+                    }
+                    userDetail.ResumeFilename = imageName;
+                }
+                #endregion
+
                 db.Entry(userDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

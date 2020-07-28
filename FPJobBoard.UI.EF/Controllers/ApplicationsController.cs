@@ -37,6 +37,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: Applications/Create
+        [Authorize(Roles =("Admin, Manager"))]
         public ActionResult Create()
         {
             ViewBag.ApplicationStatusID = new SelectList(db.ApplicationStatus, "ApplicationStatusID", "StatusName");
@@ -66,6 +67,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: Applications/Edit/5
+        [Authorize(Roles = ("Admin, Manager"))]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +105,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: Applications/Delete/5
+        [Authorize(Roles = ("Admin, Manager"))]
         public ActionResult Delete(int? id)
         {
             if (id == null)

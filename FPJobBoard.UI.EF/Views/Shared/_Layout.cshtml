@@ -44,10 +44,13 @@
                 <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                        }
                         @if (User.IsInRole("Employee") || User.IsInRole("Admin") || User.IsInRole("Manager"))
                         {
                             <li><a href="@Url.Action("Index", "OpenPositions")">Openings</a></li>
-                            <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
                             <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                             <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
                             <li><a href="@Url.Action("Index", "UserDetails")">Profile</a></li>

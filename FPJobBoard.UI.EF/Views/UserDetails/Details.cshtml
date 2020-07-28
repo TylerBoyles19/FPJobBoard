@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ResumeFilename)
+            <a href="@Url.Content("~/Content/UploadedImg/" + item.ResumeFilename)" target="_blank">Click to view Resume</a>
         </dd>
 
     </dl>

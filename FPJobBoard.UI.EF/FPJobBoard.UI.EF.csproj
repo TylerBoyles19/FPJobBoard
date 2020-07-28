@@ -268,6 +268,7 @@
     <Content Include="Content\img\elements\user2.png" />
     <Content Include="Content\img\header-bg.jpg" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\NoImageAvalible.png" />
     <Content Include="Content\img\offer.jpg" />
     <Content Include="Content\img\projects\p1.png" />
     <Content Include="Content\img\projects\p2.png" />
@@ -536,6 +537,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\UploadedImg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
