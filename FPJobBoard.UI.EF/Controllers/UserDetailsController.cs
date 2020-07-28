@@ -36,6 +36,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: UserDetails/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -90,6 +91,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: UserDetails/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Delete(string id)
         {
             if (id == null)

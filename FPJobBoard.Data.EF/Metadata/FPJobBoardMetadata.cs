@@ -150,6 +150,7 @@ namespace FPJobBoard.Data.EF
     {
         public string FullName
         {
+            [Display(Name ="Full Name")]
             get { return FirstName + " " + LastName; }
         }
     }

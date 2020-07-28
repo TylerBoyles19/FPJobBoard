@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using FPJobBoard.Data.EF;
 
 namespace FPJobBoard.UI.EF.Controllers
-{
+{   [Authorize(Roles ="Admin, Manager")]
     public class PositionsController : Controller
     {
         private FPDBEntities db = new FPDBEntities();

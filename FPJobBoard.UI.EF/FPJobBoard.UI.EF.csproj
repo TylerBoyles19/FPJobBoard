@@ -201,6 +201,7 @@
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\theme\pages.css" />
+    <Content Include="Content\Custom.css" />
     <Content Include="Content\fonts\Flaticon.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Linearicons-Free.svg" />

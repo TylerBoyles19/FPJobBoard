@@ -10,8 +10,9 @@ using FPJobBoard.Data.EF;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicationStatusController : Controller
-    {
+    {   
         private FPDBEntities db = new FPDBEntities();
 
         // GET: ApplicationStatus

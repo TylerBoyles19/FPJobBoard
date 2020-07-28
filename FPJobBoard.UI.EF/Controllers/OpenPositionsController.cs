@@ -37,6 +37,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: OpenPositions/Create
+        [Authorize(Roles ="Admin, Manager")]
         public ActionResult Create()
         {
             ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber");
@@ -64,6 +65,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: OpenPositions/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: OpenPositions/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
