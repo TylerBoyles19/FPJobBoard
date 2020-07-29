@@ -7,9 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FPJobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FPJobBoard.UI.EF.Controllers
-{
+{   
     public class OpenPositionsController : Controller
     {
         private FPDBEntities db = new FPDBEntities();
@@ -17,9 +18,37 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: OpenPositions
         public ActionResult Index()
         {
-            var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
-            return View(openPositions.ToList());
+            if (User.IsInRole("Manager"))
+            {
+                var openPositions = db.OpenPositions.Include(o => o.Location).Where(o => o.Location.ManagerID == o.Location.UserDetail.UserID);
+                return View(openPositions.ToList());
+            }
+            else
+            {
+                var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
+                return View(openPositions.ToList());
+            }
         }
+
+        public ActionResult Apply(int id)
+        {
+            string userid = User.Identity.GetUserId();
+            UserDetail ud = db.UserDetails.Find(userid);
+            string resume = ud.ResumeFilename;
+
+            Application application = new Application();
+            application.UserID = userid;
+            application.ApplicationDate = DateTime.Now;
+            application.ApplicationStatusID = 2;
+            application.ResumeFilename = resume;
+            application.ManagerNotes = application.ManagerNotes;
+            application.OpenPositionID = id;
+
+            db.Applications.Add(application);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Applications");
+        }
+
 
         // GET: OpenPositions/Details/5
         public ActionResult Details(int? id)

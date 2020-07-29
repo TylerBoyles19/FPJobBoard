@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FPJobBoard.Data.EF;
+using FPJobBoard.UI.EF.Models;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
@@ -17,7 +18,7 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: Locations
         public ActionResult Index()
         {
-            var locations = db.Locations.Include(l => l.UserDetail);
+            var locations = db.Locations.Include(l => l.UserDetail).Where(l => l.ManagerID == l.UserDetail.UserID);
             return View(locations.ToList());
         }
 
@@ -40,7 +41,7 @@ namespace FPJobBoard.UI.EF.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public ActionResult Create()
         {
-            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserID", "FirstName");
+            var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View();
         }
 
@@ -58,7 +59,7 @@ namespace FPJobBoard.UI.EF.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserID", "FirstName", location.ManagerID);
+            var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View(location);
         }
 
@@ -75,7 +76,7 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserID", "FirstName", location.ManagerID);
+            var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View(location);
         }
 
@@ -92,7 +93,7 @@ namespace FPJobBoard.UI.EF.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ManagerID = new SelectList(db.UserDetails, "UserID", "FirstName", location.ManagerID);
+            var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View(location);
         }
 

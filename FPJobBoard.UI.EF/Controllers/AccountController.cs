@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FPJobBoard.Data.EF;
+using System;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
@@ -146,7 +147,7 @@ namespace FPJobBoard.UI.EF.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
@@ -154,11 +155,34 @@ namespace FPJobBoard.UI.EF.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region File Upload
+                    string imageName = "NoImageAvalible.png";
+                    if (resume != null)
+                    {
+                        imageName = resume.FileName;
+
+                        string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                        string[] goodExts = new string[] { ".pdf" };
+                        if (goodExts.Contains(ext.ToLower()))
+                        {
+                            imageName = Guid.NewGuid() + ext;
+                            resume.SaveAs(Server.MapPath("~/Content/UploadedImg/" + imageName));
+                        }
+                        else
+                        {
+                            imageName = "NoImageAvalible.png";
+                        }
+                    }
+                    #endregion
+
+
                     #region Dealing with custom user details
                     UserDetail newUserDeets = new UserDetail();
                     newUserDeets.UserID = user.Id;
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
+                    newUserDeets.ResumeFilename = imageName;
 
                     FPDBEntities db = new FPDBEntities();
                     db.UserDetails.Add(newUserDeets);

@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<FPJobBoard.Data.EF.Location>
 
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Locations";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+@if (User.IsInRole("Admin"))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -47,19 +49,19 @@
             <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) 
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) @:|
 
-}
+                }
 
 
                 @Html.ActionLink("Details", "Details", new { id = item.LocationID })
 
                 @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
+                   @:| @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
                 }
             </td>
         </tr>
-}
+    }
 
 </table>

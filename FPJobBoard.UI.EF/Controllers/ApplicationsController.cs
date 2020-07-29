@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FPJobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
@@ -17,8 +18,18 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: Applications
         public ActionResult Index()
         {
-            var applications = db.Applications.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail);
-            return View(applications.ToList());
+            if (User.IsInRole("Manager"))
+            {
+                string manager = User.Identity.GetUserId();
+                var applicationsSubmitted = db.Applications.Where(a => a.OpenPosition.Location.ManagerID == manager);
+                return View(applicationsSubmitted.ToList());
+            }
+            else
+            {
+                var applications = db.Applications.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail);
+                return View(applications.ToList());
+
+            }
         }
 
         // GET: Applications/Details/5

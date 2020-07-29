@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FPJobBoard.Data.EF.UserDetail>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Profile";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 @if (User.IsInRole("Admin"))
 {
@@ -40,14 +40,14 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
-                <a href="@Url.Content("~/Content/UploadedImg/" + item.ResumeFilename)" target="_blank">Click to view Resume</a>
+                <a href="~/Content/UploadedImg/@item.ResumeFilename" target="_blank">Click to view Resume</a>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserID }) 
                 @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                   @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
                 }
             </td>
         </tr>

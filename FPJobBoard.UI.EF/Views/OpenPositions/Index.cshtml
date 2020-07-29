@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FPJobBoard.Data.EF.OpenPosition>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Open Positions";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
 {
@@ -14,35 +14,63 @@
 }
 <table class="table">
     <tr>
+        @if (User.IsInRole("Employee"))
+        {
+            <th>
+                Apply
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Location.StoreNumber)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Location.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.State)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Position.Title)
         </th>
-        <th></th>
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            @if (User.IsInRole("Employee"))
+            {
+                <td>
+                    @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-success" })
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Location.StoreNumber)
             </td>
+            <th>
+                @Html.DisplayFor(model => item.Location.City)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.Location.State)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.Position.Title)
             </td>
             <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) 
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
 
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
                 }
 
-                @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) 
+                @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
             </td>
         </tr>
     }
 
 </table>
+
