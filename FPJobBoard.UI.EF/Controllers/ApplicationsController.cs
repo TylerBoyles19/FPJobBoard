@@ -24,11 +24,16 @@ namespace FPJobBoard.UI.EF.Controllers
                 var applicationsSubmitted = db.Applications.Where(a => a.OpenPosition.Location.ManagerID == manager);
                 return View(applicationsSubmitted.ToList());
             }
-            else
+            if (User.IsInRole("Admin"))
             {
                 var applications = db.Applications.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail);
                 return View(applications.ToList());
-
+            }
+            else
+            {
+                string employee = User.Identity.GetUserId();
+                var applications = db.Applications.Where(a => a.UserID == employee);
+                return View(applications.ToList());
             }
         }
 

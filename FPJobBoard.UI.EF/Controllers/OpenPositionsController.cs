@@ -35,13 +35,19 @@ namespace FPJobBoard.UI.EF.Controllers
             string userid = User.Identity.GetUserId();
             UserDetail ud = db.UserDetails.Find(userid);
             string resume = ud.ResumeFilename;
+            if (resume == "NoImageAvalible.png")
+            {
+                Session["ErrorMessage"] = "Please upload a resume before applying.";
+                return RedirectToAction("Edit", "UserDetails", new { id = ud.UserID });
+            }
+
 
             Application application = new Application();
             application.UserID = userid;
             application.ApplicationDate = DateTime.Now;
             application.ApplicationStatusID = 2;
             application.ResumeFilename = resume;
-            application.ManagerNotes = application.ManagerNotes;
+            application.ManagerNotes = null;
             application.OpenPositionID = id;
 
             db.Applications.Add(application);
@@ -83,6 +89,7 @@ namespace FPJobBoard.UI.EF.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.OpenPositions.Add(openPosition);
                 db.SaveChanges();
                 return RedirectToAction("Index");

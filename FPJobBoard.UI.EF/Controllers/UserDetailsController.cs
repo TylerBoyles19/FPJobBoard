@@ -93,6 +93,10 @@ namespace FPJobBoard.UI.EF.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             UserDetail userDetail = db.UserDetails.Find(id);
+            if (userDetail.ResumeFilename != "NoImageAvalible.png")
+            {
+                Session["ErrorMessage"] = null;
+            }
             if (userDetail == null)
             {
                 return HttpNotFound();

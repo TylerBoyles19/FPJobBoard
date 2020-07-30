@@ -17,21 +17,24 @@
         <dd>
             @Html.DisplayFor(model => model.ApplicationDate)
         </dd>
+        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ManagerNotes)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ManagerNotes)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ManagerNotes)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ResumeFilename)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ResumeFilename)
+            @*@Html.DisplayFor(model => model.ResumeFilename)*@
+            <a href="~/Content/UploadedImg/@Model.ResumeFilename" target="_blank">Click to view Resume </a>
         </dd>
 
         <dt>
@@ -42,20 +45,20 @@
             @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.OpenPosition.OpenPositionID)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+            @Html.DisplayNameFor(model => model.UserDetail.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserDetail.FirstName)
+            @Html.DisplayFor(model => model.UserDetail.FullName)
         </dd>
 
     </dl>

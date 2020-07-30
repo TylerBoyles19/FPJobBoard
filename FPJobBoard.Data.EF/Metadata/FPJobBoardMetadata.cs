@@ -25,6 +25,7 @@ namespace FPJobBoard.Data.EF
         public int OpenPositionID { get; set; }
 
         [DisplayFormat(DataFormatString ="{0:d}")]
+        [Display(Name ="Date Submitted")]
         public System.DateTime ApplicationDate { get; set; }
 
         [Display(Name ="Manager Notes")]
@@ -118,6 +119,7 @@ namespace FPJobBoard.Data.EF
 
         [Required(ErrorMessage ="** Title is Required **")]
         [StringLength(50, ErrorMessage ="* Maximum 50 Characters *")]
+        [Display(Name ="Position")]
         public string Title { get; set; }
 
         [Display(Name ="Job Description")]

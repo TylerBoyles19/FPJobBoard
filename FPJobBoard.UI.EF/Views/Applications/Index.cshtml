@@ -6,12 +6,12 @@
 
 <h2>@ViewBag.Title</h2>
 
-@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+@*@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-}
+}*@
 <table class="table">
     <tr>
         <th>
@@ -19,9 +19,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResumeFilename)
@@ -55,9 +52,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ManagerNotes)
         </td>
         <td>
             @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
