@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
     <link rel="stylesheet" href="~/Content/css/nice-select.css">
     <link rel="stylesheet" href="~/Content/css/main.css">
+    @* Data Tables *@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     @* Custom CSS *@
     <link href="~/Content/Custom.css" rel="stylesheet" />
 </head>
@@ -79,7 +81,9 @@
 
     <!-- End Header Area -->
     <!-- start banner Area -->
-    @RenderBody()
+    <div class="custom-container">
+        @RenderBody()
+    </div>
     <!-- End banner Area -->
     <!-- Start features Area -->
     @*<section class="features-area section-gap-top" id="news">
@@ -405,6 +409,7 @@
     <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
     <script src="~/Content/js/jquery.sticky.js"></script>
     <script src="~/Content/js/main.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
     <script>
         function openAdminNav() {

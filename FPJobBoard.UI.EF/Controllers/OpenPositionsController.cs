@@ -89,12 +89,15 @@ namespace FPJobBoard.UI.EF.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                if (User.IsInRole("Manager"))
+                {
+                    string userID = User.Identity.GetUserId();
+                    openPosition.LocationID = db.Locations.Where(op => op.ManagerID == userID).Select(x => x.LocationID).FirstOrDefault();
+                }
                 db.OpenPositions.Add(openPosition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);

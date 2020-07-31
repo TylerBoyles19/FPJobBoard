@@ -62,3 +62,10 @@
 /*body {
     background-color: #263a4e;
 }*/
+
+/*Custom Container*/
+.custom-container {
+    margin:8px 5px 8px 5px;
+    border:2px solid black;
+    padding:4px 3px 4px 3px;
+}

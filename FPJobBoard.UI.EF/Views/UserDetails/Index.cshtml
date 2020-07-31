@@ -16,36 +16,27 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.FullName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResumeFilename)
         </th>
-        @if (User.IsInRole("Admin"))
-        {
             <th></th>
-        }
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.ResumeFilename)*@
-                <a href="~/Content/UploadedImg/@item.ResumeFilename" target="_blank">Click to view Resume</a>
+                <iframe src="~/Content/ViewerJS/#../UploadedImg/@item.ResumeFilename" width='400' height='300' allowfullscreen webkitallowfullscreen></iframe>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.UserID }) 
+
                 @if (User.IsInRole("Admin"))
                 {
                    @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserID })

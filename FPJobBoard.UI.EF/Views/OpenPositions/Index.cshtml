@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FPJobBoard.Data.EF.OpenPosition>
+﻿@using FPJobBoard.Data.EF;
+@using Microsoft.AspNet.Identity;
+@model IEnumerable<FPJobBoard.Data.EF.OpenPosition>
 
 @{
     ViewBag.Title = "Open Positions";
@@ -12,65 +14,75 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-<table class="table">
-    <tr>
-        @if (User.IsInRole("Employee"))
-        {
-            <th>
-                Apply
-            </th>
-        }
-        <th>
-            @Html.DisplayNameFor(model => model.Location.StoreNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </th>
-        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-        {
-            <th></th>
-        }
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table" id="myTable">
+    <thead>
         <tr>
             @if (User.IsInRole("Employee"))
             {
-                <td>
-                    @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-success" })
-                </td>
+                <th>
+                    Apply
+                </th>
             }
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-            </td>
             <th>
-                @Html.DisplayFor(model => item.Location.City)
+                @Html.DisplayNameFor(model => model.Location.StoreNumber)
             </th>
             <th>
-                @Html.DisplayFor(model => item.Location.State)
+                @Html.DisplayNameFor(model => model.Location.City)
             </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position.Title)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
-
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
-                }
-
-                @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </th>
+                <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (User.IsInRole("Employee"))
+                {
+                    <td>
+                        @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-outline-success" })
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Location.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Location.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.Title)
+                </td>
+                @* TODO add using statement to get access to user id and add to second part of manager *@
+                <td>@{
+                    string userid = User.Identity.GetUserId();
+                 }
+                    @if (User.IsInRole("Admin") || (User.IsInRole("Manager")&& item.Location.ManagerID == userid))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
 
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
+                    }
+
+                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+    </script>
+}
