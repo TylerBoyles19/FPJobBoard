@@ -4,39 +4,64 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>>Details</h2>
 
-<div>
-    <h4>UserDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+<div id="profileContainer">
+    <div id="profileHeader">
+        <h3>@Html.DisplayFor(model => model.FullName)</h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileLeft">
+        <p>
+            <a class="resumePdf" href="~/Content/UploadedImg/@Model.ResumeFilename">Click here to see resume</a>
+            <iframe src="~/Content/ViewerJS/#../UploadedImg/@Model.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
+        </p>
+    </div>
+    @*<div class="clearfix"></div>*@
+    <div id="profileRight">
+        <fieldset>
+            <legend>Submited Applications</legend>
+            <p>
+                <a href="@Url.Action("Index", "Applications")">Check Current Applications</a>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Open Positions</legend>
+            <p>
+                <a href="@Url.Action("Index", "OpenPositions")">Check Out the Current Open Positions</a>
+            </p>
+        </fieldset>
+        <div class="clearfix"></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterRight">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }, new { @class="btn btn-outline-warning"})
+    </div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-outline-primary"})
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+    <div class="clearfix"></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </dt>
+    @*<h4>UserDetail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
 
-        <dd>
-            <a href="@Url.Content("~/Content/UploadedImg/" + item.ResumeFilename)" target="_blank">Click to view Resume</a>
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ResumeFilename)
+            </dt>
 
-    </dl>
+            <dd>
+                <iframe src="~/Content/ViewerJS/#../UploadedImg/@Model.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
+            </dd>
+
+        </dl>*@
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

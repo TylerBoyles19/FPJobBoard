@@ -36,6 +36,7 @@
     padding-left: 25px;
     padding-right: 25px;
 }
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -65,7 +66,92 @@
 
 /*Custom Container*/
 .custom-container {
-    margin:8px 5px 8px 5px;
-    border:2px solid black;
-    padding:4px 3px 4px 3px;
+    margin: 8px 5px 8px 5px;
+    border: 2px solid black;
+    padding: 4px 3px 4px 3px;
+}
+
+/*Profile Styling*/
+#profileHeader {
+    float: left;
+    width: 80%;
+}
+
+#profileLeft {
+    float: left;
+    width: 50%
+}
+
+    #profileLeft iframe {
+        width: 100%;
+    }
+
+#profileRight {
+    float: left;
+    width: 40%;
+    margin-left: 40px;
+}
+
+    #profileRight fieldset {
+        border: 2px solid black;
+        border-radius: 1em;
+        padding-left: 1em;
+        margin-bottom: 1em;
+        width: 101%;
+    }
+
+    #profileRight legend {
+        border: 2px solid black;
+        border-radius: 1em;
+        padding-left: .5em;
+        font-size: 1em;
+        font-weight: 700;
+        width: 75%;
+        margin: auto;
+        text-align: center;
+    }
+
+#profileFooterLeft {
+    float: left;
+    width:8%;
+    /*padding-top: .2em;
+    padding-left: .2em;*/
+}
+
+#profileFooterRight {
+    float: right;
+    width: 8%;
+    /*padding-top: 1em;
+    padding-left: .2em;*/
+}
+
+#profileContainer {
+    border: 3px solid black;
+    padding: 1em;
+    width: 75%;
+    margin: auto;
+    margin-bottom:20px;
+}
+fieldset p {
+    text-align:center;
+    padding-top:.5em;
+}
+
+.resumePdf {
+    display: none;
+}
+
+@media screen and (max-width:768px){
+    iframe {
+        display:none;
+    }
+    .resumePdf{
+        display:inline;
+    }
+}
+
+/*h2 styling*/
+h2{
+    margin-top:20px;
+    text-align:center;
 }

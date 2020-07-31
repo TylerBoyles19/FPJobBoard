@@ -10,7 +10,7 @@ using FPJobBoard.Data.EF;
 using Microsoft.AspNet.Identity;
 
 namespace FPJobBoard.UI.EF.Controllers
-{
+{   [Authorize(Roles ="Employee, Manager, Admin")]
     public class ApplicationsController : Controller
     {
         private FPDBEntities db = new FPDBEntities();

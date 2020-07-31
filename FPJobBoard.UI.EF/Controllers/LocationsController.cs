@@ -11,6 +11,7 @@ using FPJobBoard.UI.EF.Models;
 
 namespace FPJobBoard.UI.EF.Controllers
 {
+    [Authorize(Roles = "Employee, Manager, Admin")]
     public class LocationsController : Controller
     {
         private FPDBEntities db = new FPDBEntities();

@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Profile";
 }
-
 <h2>@ViewBag.Title</h2>
 
 @*@if (User.IsInRole("Admin"))
@@ -12,6 +11,8 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }*@
+
+
 
 <table class="table">
     <tr>
@@ -31,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
-                <iframe src="~/Content/ViewerJS/#../UploadedImg/@item.ResumeFilename" width='400' height='300' allowfullscreen webkitallowfullscreen></iframe>
+                <iframe src="~/Content/ViewerJS/#../UploadedImg/@item.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
