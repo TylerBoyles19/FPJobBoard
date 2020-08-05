@@ -41,8 +41,10 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl, string divId)
         {
+            ViewBag.Scroll = divId;
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -137,8 +139,10 @@ namespace FPJobBoard.UI.EF.Controllers
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View();
         }
 
@@ -191,7 +195,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
                     UserManager.AddToRole(user.Id, "Employee");
-                    return RedirectToAction("Login");
+                    return RedirectToAction("Login", new { divId="ScrollDivID"});
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     //ViewBag.Link = callbackUrl;

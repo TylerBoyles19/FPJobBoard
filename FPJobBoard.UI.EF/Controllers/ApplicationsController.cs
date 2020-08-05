@@ -10,14 +10,17 @@ using FPJobBoard.Data.EF;
 using Microsoft.AspNet.Identity;
 
 namespace FPJobBoard.UI.EF.Controllers
-{   [Authorize(Roles ="Employee, Manager, Admin")]
+{
+    [Authorize(Roles = "Employee, Manager, Admin")]
     public class ApplicationsController : Controller
     {
         private FPDBEntities db = new FPDBEntities();
 
         // GET: Applications
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (User.IsInRole("Manager"))
             {
                 string manager = User.Identity.GetUserId();
@@ -37,9 +40,12 @@ namespace FPJobBoard.UI.EF.Controllers
             }
         }
 
+
         // GET: Applications/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,9 +59,11 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: Applications/Create
-        [Authorize(Roles =("Admin, Manager"))]
-        public ActionResult Create()
+        [Authorize(Roles = ("Admin, Manager"))]
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             ViewBag.ApplicationStatusID = new SelectList(db.ApplicationStatus, "ApplicationStatusID", "StatusName");
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID");
             ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName");
@@ -73,7 +81,7 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Applications.Add(application);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
 
             ViewBag.ApplicationStatusID = new SelectList(db.ApplicationStatus, "ApplicationStatusID", "StatusName", application.ApplicationStatusID);
@@ -84,8 +92,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: Applications/Edit/5
         [Authorize(Roles = ("Admin, Manager"))]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,7 +122,7 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Entry(application).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             ViewBag.ApplicationStatusID = new SelectList(db.ApplicationStatus, "ApplicationStatusID", "StatusName", application.ApplicationStatusID);
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
@@ -122,8 +132,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: Applications/Delete/5
         [Authorize(Roles = ("Admin, Manager"))]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -15,14 +15,18 @@ namespace FPJobBoard.UI.EF.Controllers
         private FPDBEntities db = new FPDBEntities();
 
         // GET: Positions
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View(db.Positions.ToList());
         }
 
         // GET: Positions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -36,8 +40,10 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: Positions/Create
-        public ActionResult Create()
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View();
         }
 
@@ -52,15 +58,17 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Positions.Add(position);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
 
             return View(position);
         }
 
         // GET: Positions/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,14 +92,16 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Entry(position).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             return View(position);
         }
 
         // GET: Positions/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,7 +122,7 @@ namespace FPJobBoard.UI.EF.Controllers
             Position position = db.Positions.Find(id);
             db.Positions.Remove(position);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { divId="ScrollDivID"});
         }
 
         protected override void Dispose(bool disposing)

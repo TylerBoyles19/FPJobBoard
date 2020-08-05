@@ -6,77 +6,90 @@
     ViewBag.Title = "Open Positions";
 }
 
-<h2>@ViewBag.Title</h2>
-
-@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            @if (User.IsInRole("Employee"))
-            {
-                <th>
-                    Apply
-                </th>
-            }
-            <th>
-                @Html.DisplayNameFor(model => model.Location.StoreNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position.Title)
-            </th>
-                <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="custom-container" id="ScrollDivID">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create","OpenPositions", new { divId= "ScrollDivID" }, new { @class = "btn btn-outline-success" })
+        </p>
+    }
+    <table class="table" id="myTable">
+        <thead>
             <tr>
                 @if (User.IsInRole("Employee"))
                 {
-                    <td>
-                        @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-outline-success" })
-                    </td>
+                    <th>
+                        Apply
+                    </th>
                 }
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Location.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Location.State)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position.Title)
-                </td>
-                @* TODO add using statement to get access to user id and add to second part of manager *@
-                <td>@{
-                    string userid = User.Identity.GetUserId();
-                 }
-                    @if (User.IsInRole("Admin") || (User.IsInRole("Manager")&& item.Location.ManagerID == userid))
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
-
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
-                    }
-
-                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position.Title)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (User.IsInRole("Employee"))
+                    {
+                        
+                    <td>
+                        @if (item.AlreadyApplied == true)
+                        {
+                            @*@Html.ActionLink("Applied", null, null, new { @class="btn btn-secondary", @disabled ="disabled"})*@
+                            <button type="submit" name="Applied!" value="Apply" class="btn btn-secondary" disabled="disabled">Applied!</button>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Apply!", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-outline-info" })
+                        }
+                    </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Location.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Location.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.Title)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-primary" })
+
+                        @{
+                            string userid = User.Identity.GetUserId();
+                        }
+                        @if (User.IsInRole("Admin") || (User.IsInRole("Manager") && item.Location.ManagerID == userid))
+                        {
+                            @:| @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID, divId="ScrollDivID" }, new { @class = "btn btn-outline-warning" })
+
+
+                            @:| @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID, divId="ScrollDivID" }, new { @class = "btn btn-outline-danger" })
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section scripts{
     <script>

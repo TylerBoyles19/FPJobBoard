@@ -51,16 +51,20 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Users/
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View(await UserManager.Users.ToListAsync());
         }
 
         //
         // GET: /Users/Details/5
         [HttpGet]
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -75,8 +79,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Users/Create
         [HttpGet]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             //Get the list of Roles
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
             return View();
@@ -114,7 +120,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     return View();
 
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
             return View();
@@ -123,8 +129,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Users/Edit/1
         [HttpGet]
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -185,7 +193,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             ModelState.AddModelError("", "Something failed.");
             return View();
@@ -194,8 +202,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Users/Delete/5
         [HttpGet]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -233,7 +243,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             return View();
         }

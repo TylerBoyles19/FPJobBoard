@@ -1,47 +1,59 @@
-﻿@model FPJobBoard.Data.EF.OpenPosition
+﻿@using Microsoft.AspNet.Identity;
+@using FPJobBoard.Data.EF;
+
+@model FPJobBoard.Data.EF.OpenPosition
 
 @{
     ViewBag.Title = "Create";
+
+    FPDBEntities ctx = new FPDBEntities();
+    string userID = User.Identity.GetUserId();
+    Location currentLocation = ctx.Locations.Where(cl => cl.ManagerID == userID).FirstOrDefault();
+
 }
 
-<h2>Create</h2>
+<h2 id="ScrollDivID">Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>OpenPosition</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationID, "LocationID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("LocationID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-    }
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PositionID, "PositionID", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PositionID", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+    <div id="profileContainer">
+        <div id="profileLeft">
+            <fieldset>
+                <legend>Store Number</legend>
+                <p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.DropDownList("LocationID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                        
+                    <span>@currentLocation.StoreNumber</span>
+                    }
+                    @*@Html.DisplayFor(model => model.LocationID)*@
+                </p>
+            </fieldset>
         </div>
+        <div id="profileRight">
+            <fieldset>
+                <legend>Position</legend>
+                <p>
+                    @Html.DropDownList("PositionID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+                </p>
+            </fieldset>
+        </div>
+        <div class="clearfix"></div>
+        <div id="profileFooterLeft">
+            @Html.ActionLink("Back to List", "Index", "OpenPositions", new { divId="ScrollDivID"}, new { @class = "btn btn-outline-primary" })
+        </div>
+        <div id="profileFooterRight">
+            <input type="submit" value="Create" class="btn btn-outline-success" />
+        </div>
+        <div class="clearfix"></div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-outline-primary" />
-        </div>
-    </div>
-</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

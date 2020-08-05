@@ -1,69 +1,54 @@
 ﻿@model FPJobBoard.Data.EF.Application
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Application Details";
 }
 
-<h2>Details</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
-<div>
-    <h4>Application</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </dt>
+<div id="profileContainer">
+    <div id="profileHeader">
+        <h3>@Html.DisplayFor(model => model.UserDetail.FullName)</h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileLeft">
+        <p>
+            <a class="resumePdf" href="~/Content/UploadedImg/@Model.ResumeFilename">Click here to see resume</a>
+            <iframe src="~/Content/ViewerJS/#../UploadedImg/@Model.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
+        </p>
+    </div>
+    <div id="profileRight">
+        <fieldset>
+            <legend>Date Submitted</legend>
+            <p>
+                @Html.DisplayFor(model => model.ApplicationDate)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Application Status</legend>
+            <p>
+                @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
 
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationDate)
-        </dd>
+            </p>
+        </fieldset>
         @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
         {
-            <dt>
-                @Html.DisplayNameFor(model => model.ManagerNotes)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ManagerNotes)
-            </dd>
+            <fieldset>
+                <legend>Manager Notes</legend>
+                <p>
+                    @Html.DisplayFor(model => model.ManagerNotes)
+                </p>
+            </fieldset>
         }
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </dt>
-
-        <dd>
-            @*@Html.DisplayFor(model => model.ResumeFilename)*@
-            <a href="~/Content/UploadedImg/@Model.ResumeFilename" target="_blank">Click to view Resume </a>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OpenPosition.OpenPositionID)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserDetail.FullName)
-        </dd>
-
-    </dl>
+        <div class="clearfix"></div>
+        </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", "Applications", new { divId="ScrollDivID"}, new { @class="btn btn-outline-primary"})
+    </div>
+    <div id="profileFooterRight">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationID, divId="ScrollDivID" }, new { @class="btn btn-outline-warning"}) 
+    </div>
+    <div class="clearfix"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

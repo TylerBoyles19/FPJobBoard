@@ -1,34 +1,36 @@
 ﻿@model FPJobBoard.Data.EF.ApplicationStatu
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Role Details";
 }
 
-<h2>Details</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
-<div>
-    <h4>ApplicationStatu</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusDescription)
-        </dd>
-
-    </dl>
+<div id="profileContainer">
+    <div class="clearfix"></div>
+    <div id="profileLeft">
+        <fieldset>
+            <legend>Status</legend>
+            <p>
+                @Html.DisplayFor(model => model.StatusName)
+            </p>
+        </fieldset>
+    </div>
+    <div id="profileRight">
+        <fieldset>
+            <legend>Status Description</legend>
+            <p>
+                @Html.DisplayFor(model => model.StatusDescription)
+            </p>
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", "ApplicationStatus", new { divId="ScrollDivID"}, new { @class="btn btn-outline-primary"})
+    </div>
+    <div id="profileFooterRight">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationStatusID, divId = "ScrollDivID" }, new { @class="btn btn-outline-warning"}) 
+    </div>
+    <div class="clearfix"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationStatusID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -18,22 +18,7 @@
         </p>
     </div>
     @*<div class="clearfix"></div>*@
-    <div id="profileRight">
-        <fieldset>
-            <legend>Submited Applications</legend>
-            <p>
-                <a href="@Url.Action("Index", "Applications")">Check Current Applications</a>
-            </p>
-        </fieldset>
-        <fieldset>
-            <legend>Open Positions</legend>
-            <p>
-                <a href="@Url.Action("Index", "OpenPositions")">Check Out the Current Open Positions</a>
-            </p>
-        </fieldset>
         <div class="clearfix"></div>
-
-    </div>
     <div class="clearfix"></div>
     <div id="profileFooterRight">
         @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }, new { @class="btn btn-outline-warning"})
@@ -43,25 +28,4 @@
     </div>
 
     <div class="clearfix"></div>
-
-
-    @*<h4>UserDetail</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.FullName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FullName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ResumeFilename)
-            </dt>
-
-            <dd>
-                <iframe src="~/Content/ViewerJS/#../UploadedImg/@Model.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
-            </dd>
-
-        </dl>*@
 </div>

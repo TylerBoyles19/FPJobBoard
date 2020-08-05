@@ -4,68 +4,47 @@
     ViewBag.Title = "Delete Application?";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
-<div>
-    <h4>Application</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ManagerNotes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ResumeFilename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OpenPosition.OpenPositionID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserDetail.FirstName)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+<div id="profileContainer">
+    <div id="profileHeader">
+        <h3>@Html.DisplayFor(model => model.UserDetail.FullName)'s Application</h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileLeft">
+        <p>
+            <a class="resumePdf" href="~/Content/UploadedImg/@Model.ResumeFilename">Click here to see resume</a>
+            <iframe src="~/Content/ViewerJS/#../UploadedImg/@Model.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
+        </p>
+    </div>
+    <div id="profileRight">
+        <fieldset>
+            <legend>Date Submitted</legend>
+            <p>
+                @Html.DisplayFor(model => model.ApplicationDate)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Application Status</legend>
+            <p>
+                @Html.DisplayFor(model => model.ApplicationStatu.StatusName)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Manager Notes</legend>
+            <p>
+                @Html.DisplayFor(model => model.ManagerNotes)
+            </p>
+        </fieldset>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", "Applications", new { divId="ScrollDivID"}, new { @class = "btn btn-outline-primary" })
+    </div>
+    <div id="profileFooterRight">
+        <input type="submit" value="Delete" class="btn btn-outline-danger" />
+    </div>
+    <div class="clearfix"></div>
 </div>
+

@@ -1,45 +1,43 @@
 ﻿@model FPJobBoard.Data.EF.ApplicationStatu
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Status";
 }
 
-<h2>Edit</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ApplicationStatu</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ApplicationStatusID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StatusName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StatusName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StatusName, "", new { @class = "text-danger" })
-            </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ApplicationStatusID)
+    <div id="profileContainer">
+        <div class="clearfix"></div>
+        <div id="profileLeft">
+            <fieldset>
+                <legend>Status</legend>
+                <p>
+                    @Html.EditorFor(model => model.StatusName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StatusName, "", new { @class = "text-danger" })
+                </p>
+            </fieldset>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StatusDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StatusDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StatusDescription, "", new { @class = "text-danger" })
-            </div>
+        <div id="profileRight">
+            <fieldset>
+                <legend>Status Description</legend>
+                <p>
+                    @Html.EditorFor(model => model.StatusDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StatusDescription, "", new { @class = "text-danger" })
+                </p>
+            </fieldset>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-warning" />
-            </div>
+        <div class="clearfix"></div>
+        <div id="profileFooterLeft">
+            @Html.ActionLink("Back to List", "Index", "ApplicationStatus", new { divId="ScrollDivID"}, new { @class="btn btn-outline-primary"})
         </div>
+        <div id="profileFooterRight">
+            <input type="submit" value="Save" class="btn btn-outline-warning" />
+        </div>
+        <div class="clearfix"></div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

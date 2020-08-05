@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,10 +203,17 @@
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\theme\pages.css" />
     <Content Include="Content\Custom.css" />
+    <Content Include="Content\Favicon\android-chrome-192x192.png" />
+    <Content Include="Content\Favicon\android-chrome-512x512.png" />
+    <Content Include="Content\Favicon\apple-touch-icon.png" />
+    <Content Include="Content\Favicon\favicon-16x16.png" />
+    <Content Include="Content\Favicon\favicon-32x32.png" />
+    <Content Include="Content\Favicon\favicon.ico" />
     <Content Include="Content\fonts\Flaticon.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Linearicons-Free.svg" />
     <Content Include="Content\img\about.png" />
+    <Content Include="Content\img\aboutFP.jpg" />
     <Content Include="Content\img\blog\ads-banner.jpg" />
     <Content Include="Content\img\blog\blog-home-banner.jpg" />
     <Content Include="Content\img\blog\c1.jpg" />
@@ -267,6 +275,7 @@
     <Content Include="Content\img\elements\user1.png" />
     <Content Include="Content\img\elements\user2.png" />
     <Content Include="Content\img\header-bg.jpg" />
+    <Content Include="Content\img\logo-via-logohub %283%29.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\NoImageAvalible.png" />
     <Content Include="Content\img\offer.jpg" />
@@ -274,6 +283,7 @@
     <Content Include="Content\img\projects\p2.png" />
     <Content Include="Content\img\projects\p3.png" />
     <Content Include="Content\img\projects\p4.png" />
+    <Content Include="Content\img\SupermarketTeam.jpg" />
     <Content Include="Content\img\testimonial\t1.png" />
     <Content Include="Content\img\testimonial\t2.png" />
     <Content Include="Content\img\testimonial\t3.png" />
@@ -441,6 +451,7 @@
     <Content Include="Content\img\projects\.DS_Store" />
     <Content Include="Content\img\testimonial\.DS_Store" />
     <Content Include="Content\js\.DS_Store" />
+    <Content Include="Content\Favicon\site.webmanifest" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -554,6 +565,7 @@
     <Content Include="Views\UserDetails\Details.cshtml" />
     <Content Include="Views\UserDetails\Edit.cshtml" />
     <Content Include="Views\UserDetails\Index.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

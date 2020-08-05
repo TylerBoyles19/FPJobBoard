@@ -1,0 +1,36 @@
+﻿@model FPJobBoard.UI.EF.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "EmailConfirmation";
+}
+
+<h2>Success!</h2>
+
+<div id="profileContainer">
+    <div id="profileHeaderCenter">
+        <h2>Thank you for reaching out, @Model.Name! We will get back with you as soon as possible!</h2>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileCenter">
+        <fieldset>
+            <legend>Email</legend>
+            <p>
+                @Model.Email
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Subject</legend>
+            <p>
+                @Model.Subject
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Message</legend>
+            <p>
+                @Model.Message
+            </p>
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

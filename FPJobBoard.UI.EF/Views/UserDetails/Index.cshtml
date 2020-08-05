@@ -3,47 +3,60 @@
 @{
     ViewBag.Title = "Profile";
 }
-<h2>@ViewBag.Title</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
 @*@if (User.IsInRole("Admin"))
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}*@
-
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResumeFilename)
-        </th>
-            <th></th>
-    </tr>
-
-    @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }*@
+
+@foreach (var item in Model)
+{
+    <div id="profileContainer">
+        <div id="profileHeader">
+            <h3>@Html.DisplayFor(modelItem => item.FullName)</h3>
+        </div>
+        <div class="clearfix"></div>
+        <div id="profileLeft">
+            <p>
+                <a class="resumePdf" href="~/Content/UploadedImg/@item.ResumeFilename">Click here to see resume</a>
                 <iframe src="~/Content/ViewerJS/#../UploadedImg/@item.ResumeFilename" width='500' height='300' allowfullscreen webkitallowfullscreen></iframe>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserID }) 
-
-                @if (User.IsInRole("Admin"))
-                {
-                   @:| @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-                }
-            </td>
-        </tr>
-    }
-
-</table>
+            </p>
+        </div>
+        <div id="profileRight">
+            <fieldset>
+                <legend>Submited Applications</legend>
+                <p>
+                    @Html.ActionLink("Check Current Applications", "Index", "Applications", new { divId="ScrollDivID"}, null)
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Open Positions</legend>
+                <p>
+                    @Html.ActionLink("Check Out the Current Open Positions", "Index", "OpenPositions", new { divId="ScrollDivID"}, null)
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Reach Out</legend>
+                <p>
+                   @Html.ActionLink("Contact HR With any Problems or Questions","Contact", "Home", new { divId="ScrollDivID"}, null) 
+                </p>
+            </fieldset>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="profileFooterLeft">
+            @*@Html.ActionLink("Details", "Details", new { id = item.UserID }, new { @class = "btn btn-outline-primary" })*@
+            @if (User.IsInRole("Admin"))
+            {
+                 @Html.ActionLink("Delete", "Delete", new { id = item.UserID, divId="ScrollDivID" }, new { @class = "btn btn-outline-danger" })
+            }
+        </div>
+        <div id="profileFooterRight">
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserID, divId="ScrollDivID" }, new { @class = "btn btn-outline-warning" })
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

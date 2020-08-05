@@ -54,16 +54,20 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Roles/
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View(RoleManager.Roles);
         }
 
         //
         // GET: /Roles/Details/5
         [HttpGet]
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,8 +93,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Roles/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View();
         }
 
@@ -109,7 +115,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     ModelState.AddModelError("", roleresult.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             return View();
         }
@@ -117,8 +123,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Roles/Edit/Admin
         [HttpGet]
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -144,7 +152,7 @@ namespace FPJobBoard.UI.EF.Controllers
                 var role = await RoleManager.FindByIdAsync(roleModel.Id);
                 role.Name = roleModel.Name;
                 await RoleManager.UpdateAsync(role);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             return View();
         }
@@ -152,8 +160,10 @@ namespace FPJobBoard.UI.EF.Controllers
         //
         // GET: /Roles/Delete/5
         [HttpGet]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -198,7 +208,7 @@ namespace FPJobBoard.UI.EF.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             return View();
         }

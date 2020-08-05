@@ -4,36 +4,38 @@
     ViewBag.Title = "User Roles";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="custom-container">
+    <h2 id="ScrollDivID">@ViewBag.Title</h2>
+    <hr />
+    <p>
+        @Html.ActionLink("Create New", "Create", "RolesAdmin", new { divId="ScrollDivID"}, new { @class = "btn btn-outline-success" })
+    </p>
+    <table class="table" id="myTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id, divId="ScrollDivID" }, new { @class = "btn btn-outline-primary" }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id, divId = "ScrollDivID" }, new { @class = "btn btn-outline-warning" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id, divId = "ScrollDivID" }, new { @class = "btn btn-outline-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section scripts{
     <script>

@@ -3,37 +3,39 @@
 @{
     ViewBag.Title = "Application Status";
 }
+<div class="custom-container">
+    <h2 id="ScrollDivID">@ViewBag.Title</h2>
+    <hr />
+    <p>
+        @Html.ActionLink("Create New", "Create", "ApplicationStatus", new { divId="ScrollDivID"}, new { @class = "btn btn-outline-success" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusDescription)
+            </th>
+            <th></th>
+        </tr>
 
-<h2>@ViewBag.Title</h2>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ApplicationStatusID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-primary" }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-warning" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusDescription)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ApplicationStatusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ApplicationStatusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ApplicationStatusID })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

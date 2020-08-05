@@ -17,15 +17,19 @@ namespace FPJobBoard.UI.EF.Controllers
         private FPDBEntities db = new FPDBEntities();
 
         // GET: Locations
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             var locations = db.Locations.Include(l => l.UserDetail).Where(l => l.ManagerID == l.UserDetail.UserID);
             return View(locations.ToList());
         }
 
         // GET: Locations/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,8 +44,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: Locations/Create
         [Authorize(Roles = "Admin, Manager")]
-        public ActionResult Create()
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View();
         }
@@ -57,7 +63,7 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Locations.Add(location);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
 
             var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
@@ -66,8 +72,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: Locations/Edit/5
         [Authorize(Roles = "Admin, Manager")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,7 +100,7 @@ namespace FPJobBoard.UI.EF.Controllers
             {
                 db.Entry(location).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
             var context = new ApplicationDbContext();            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains("d8b72df0-558c-4e6b-b269-a4da58f987d3")).Select(x => x.Id).ToList();            ViewBag.ManagerID = new SelectList(db.UserDetails.Where(x => users.Contains(x.UserID)), "UserID", "FirstName");
             return View(location);
@@ -100,8 +108,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: Locations/Delete/5
         [Authorize(Roles = "Admin")]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,7 +132,7 @@ namespace FPJobBoard.UI.EF.Controllers
             Location location = db.Locations.Find(id);
             db.Locations.Remove(location);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { divId="ScrollDivID"});
         }
 
         protected override void Dispose(bool disposing)

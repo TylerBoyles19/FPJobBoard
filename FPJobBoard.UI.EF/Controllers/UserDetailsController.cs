@@ -16,8 +16,10 @@ namespace FPJobBoard.UI.EF.Controllers
         private FPDBEntities db = new FPDBEntities();
 
         // GET: UserDetails
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             string currentUserID = User.Identity.GetUserId();
 
             var user = db.UserDetails.Where(u => u.UserID == currentUserID).ToList();
@@ -41,8 +43,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: UserDetails/Create
         [Authorize(Roles ="Admin")]
-        public ActionResult Create()
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View();
         }
 
@@ -79,15 +83,17 @@ namespace FPJobBoard.UI.EF.Controllers
 
                 db.UserDetails.Add(userDetail);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { divId="ScrollDivID"});
             }
 
             return View(userDetail);
         }
 
         // GET: UserDetails/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -144,8 +150,10 @@ namespace FPJobBoard.UI.EF.Controllers
 
         // GET: UserDetails/Delete/5
         [Authorize(Roles = "Admin, Manager")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -3,43 +3,45 @@
 @{
     ViewBag.Title = "Positions";
 }
+<div class="custom-container">
 
-<h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobDescription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <h2 id="ScrollDivID">@ViewBag.Title</h2>
+    <hr>
+    <p>
+        @Html.ActionLink("Create New", "Create", "Positions", new { divId="ScrollDivID"}, new { @class = "btn btn-outline-success" })
+    </p>
+    <table class="table" id="myTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JobDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobDescription)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.PositionID, divId="ScrollDivID" }, new { @class = "btn btn-outline-primary" }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-warning" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PositionID, divId = "ScrollDivID" }, new { @class = "btn btn-outline-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section scripts{
     <script>

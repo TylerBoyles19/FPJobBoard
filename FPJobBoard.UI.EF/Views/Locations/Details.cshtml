@@ -4,47 +4,48 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 id="ScrollDivID">Details</h2>
 
-<div>
-    <h4>Location</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StoreNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserDetail.FirstName)
-        </dd>
-
-    </dl>
+<div id="profileContainer">
+    <div id="profileHeader">
+        <h3>@Html.DisplayFor(model => model.StoreNumber)</h3>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileLeft">
+        <fieldset>
+            <legend>Store Number</legend>
+            <p>
+                @Html.DisplayFor(model => model.StoreNumber)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Manager</legend>
+            <p>
+                @Html.DisplayFor(model => model.UserDetail.FullName)
+            </p>
+        </fieldset>
+    </div>
+    <div id="profileRight">
+        <fieldset>
+            <legend>City</legend>
+            <p>
+                @Html.DisplayFor(model => model.City)
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>State</legend>
+            <p>
+                @Html.DisplayFor(model => model.State)
+            </p>
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", "Locations", new { divId="ScrollDivID"}, new { @class="btn btn-outline-primary"})
+    </div>
+    <div id="profileFooterRight">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID, divId="ScrollDivID" }, new { @class="btn btn-outline-warning"}) 
+    </div>
+    <div class="clearfix"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

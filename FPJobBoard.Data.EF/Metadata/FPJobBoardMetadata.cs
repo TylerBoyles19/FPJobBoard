@@ -92,8 +92,6 @@ namespace FPJobBoard.Data.EF
     #endregion
 
     #region Open Position
-    [MetadataType(typeof(OpenPositionMetedata))]
-    public partial class OpenPosition { }
 
     public class OpenPositionMetedata
     {
@@ -107,6 +105,12 @@ namespace FPJobBoard.Data.EF
         [Display(Name ="Position ID")]
         public int PositionID { get; set; }
     }
+    [MetadataType(typeof(OpenPositionMetedata))]
+    public partial class OpenPosition
+    {
+        public bool AlreadyApplied { get; set; }
+    }
+
     #endregion
 
     #region Position

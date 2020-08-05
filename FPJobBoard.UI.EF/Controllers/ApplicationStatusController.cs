@@ -16,14 +16,18 @@ namespace FPJobBoard.UI.EF.Controllers
         private FPDBEntities db = new FPDBEntities();
 
         // GET: ApplicationStatus
-        public ActionResult Index()
+        public ActionResult Index(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View(db.ApplicationStatus.ToList());
         }
 
         // GET: ApplicationStatus/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -37,8 +41,10 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: ApplicationStatus/Create
-        public ActionResult Create()
+        public ActionResult Create(string divId)
         {
+            ViewBag.Scroll = divId;
+
             return View();
         }
 
@@ -60,8 +66,10 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: ApplicationStatus/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -91,8 +99,10 @@ namespace FPJobBoard.UI.EF.Controllers
         }
 
         // GET: ApplicationStatus/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string divId)
         {
+            ViewBag.Scroll = divId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

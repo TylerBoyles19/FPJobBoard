@@ -1,45 +1,51 @@
 ﻿@model FPJobBoard.UI.EF.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Role Details";
 }
 
-<h2>Details.</h2>
+<h2 id="ScrollDivID">@ViewBag.Title</h2>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
+<div id="profileContainer">
+    <div id="profileLeft">
+        <fieldset>
+            <legend>User Email</legend>
+            <p>
+                @Html.DisplayFor(model => model.UserName)
+            </p>
+        </fieldset>
+    </div>
+    <div id="profileRight">
+        <fieldset>
+            <legend>Roles for This User</legend>
+
+            @if (ViewBag.RoleNames.Count == 0)
+            {
+                <hr />
+                <p>No roles found for this user.</p>
+            }
+            <table class="table">
+
+                @foreach (var item in ViewBag.RoleNames)
+                {
+                    <tr>
+                        <td>
+                            @item
+                        </td>
+                    </tr>
+                }
+            </table>
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+    <div id="profileFooterLeft">
+        @Html.ActionLink("Back to List", "Index", "UsersAdmin", new { divId="ScrollDivID"}, new { @class="btn btn-outline-primary"})
+    </div>
+    <div id="profileFooterRight">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id, divId="ScrollDivID" }, new { @class="btn btn-outline-warning"}) 
+    </div>
+    <div class="clearfix"></div>
 </div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
-
-<table class="table">
-
-    @foreach (var item in ViewBag.RoleNames)
-    {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 
 
